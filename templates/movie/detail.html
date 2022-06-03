@@ -1,10 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <title>detail</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .mycards {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1600px;
+        }
+
+    </style>
+    <script>
+        
+    </script>
+
 </head>
 <body>
-    <h1>detail</h1>
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="title">영화 제목</h5>
+                        <p class="tag">장르</p>
+                        <p class="score">⭐⭐⭐</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <p class="desc">여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.</p> 
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+        <!-- 리뷰 작성하기 -->
+    <form action="/detail/post/{{ mo.id }}" method="post">
+        <button type="submit" class="btn btn-primary">작성하기</button>
+    </form>
+        <!-- 추천된 영화가 나오는 곳 -->    
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+            <div class="col">
+                <div class="card h-100">
+                    <a href="/detail/{{ mo.id }}">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="title">영화 제목</h5>
+                        <p class="tag">장르</p>
+                        <p class="score">⭐⭐⭐</p>
+                        <p class="desc">여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="/detail/{{ mo.id }}">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="title">영화 제목</h5>
+                        <p class="tag">장르</p>
+                        <p class="score">⭐⭐⭐</p>
+                        <p class="desc">여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.</p>
+                    </div>
+                    </a>
+                </div>
+            </div><div class="col">
+                <div class="card h-100">
+                    <a href="/detail/{{ mo.id }}">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="title">영화 제목</h5>
+                        <p class="tag">장르</p>
+                        <p class="score">⭐⭐⭐</p>
+                        <p class="desc">여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.여기에 영화에 대한 설명이 들어갑니다.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>    
+    </div>
 </body>
 </html>
