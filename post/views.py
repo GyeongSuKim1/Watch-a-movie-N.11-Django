@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 def show_list(request):
     if request.method == 'GET':
-        return render(request,'post/post.html')
+        return render(request,'post/mypage.html')
