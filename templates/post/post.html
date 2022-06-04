@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script>
+         $(document).ready(function () {
+
+            $('#modal_open').click(function() {
+                $('#modal').show();
+            })
+            $("#modal_close").click(function () {
+              $('#modal').hide();
+            })
+
+        })
+
+         function ShowSliderValue(sVal) {
+             var obValueView = document.getElementById("slider_value_view");
+             obValueView.innerHTML = sVal
+         }
+
+         var RangeSlider = function () {
+             var range = $('.slider_range');
+             range.on('input', function () {
+                 ShowSliderValue(this.value);
+             });
+         };
+
+         RangeSlider();
+
+
+    </script>
+</head>
+
+<style>
+    body {
+        margin: 0;
+    }
+    .modal {
+        position: fixed;
+        {#display: none;#}
+
+    }
+    .modal_back {
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+
+        position: fixed;
+    }
+    .modal_content {
+        background-color: white;
+        width: 30%;
+        height: 60%;
+        border-radius: 10px;
+
+        margin: 7% auto;
+
+    }
+    .modal_title {
+        background-color: black;
+        height: 40px;
+        color: white;
+        border-radius: 5px;
+        padding-left: 3px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .modal_component {
+        text-align: center;
+    }
+    .title {
+        margin-top: 7%;
+        margin-bottom: 5%;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .slider {
+        -webkit-appearance: none;
+        width: 50%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        margin-top: 5%;
+    }
+    .score {
+        margin-top: 40px;
+    }
+    .comment {
+        width: 80%;
+        height: 150px;
+        margin-top: 7%;
+        margin-bottom: 7%;
+    }
+</style>
+<body>
+
+<!--<button id="modal_open">
+    열기
+</button>-->
+<div class="modal" id="modal">
+    <div class="modal_back">
+        <div class="modal_content">
+            <div class="modal_title">
+                내 평점 등록
+            </div>
+            <div class="modal_component">
+                <div class="title">
+                    {{ 영화 제목 }}
+                </div>
+                <div>
+
+                    <div class="slidecontainer" >
+                        <span>평점을 매겨주세요.</span><br>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange"><br>
+                        <span class="score">5.0</span>
+                    </div>
+                </div>
+                <div>
+                    <textarea class="comment" placeholder="감상평을 남겨주세요."></textarea>
+                </div>
+                <div>
+                    <button>취소</button> <button>확인</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
