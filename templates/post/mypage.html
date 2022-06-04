@@ -30,6 +30,14 @@
         </tr>
         </thead>
         <tbody>
+        {% for post in posts %}
+        <tr>
+            <th scope="row">1</th>
+            <td>{{ post.title }}</td>
+            <td>{{ post.rate }}</td>
+            <td>{{ post.created_at|timesince }}</td>
+        </tr>
+        {% endfor %}
         <tr>
             <th scope="row">1</th>
             <td>바람과 함께 사라지다</td>
