@@ -25,6 +25,10 @@ def sign_up_view(request):
 		password = request.POST.get('password', None)
 		password2 = request.POST.get('password2', None)
 
+		if len(str(username)) <= 6:
+			return render(request, 'user/signup.html', {'error': '아이디를 6자리 이상 입력해주세요'})
+		if len(str(password)) <= 6:
+			return render(request, 'user/signup.html', {'error': '패스워드 6자리 이상 입력해주세요'})
 		if password != password2:
 			return render(request, 'user/signup.html', {'error': '패스워드를 확인 해 주세요!'})
 		else:
@@ -48,7 +52,7 @@ def sign_in_view(request):
 			auth.login(request, me)
 			return redirect('/mypage/')
 		else:  # 로그인 실패하면 다시 로그인 페이지를 보여주기
-			return render(request, 'user/signin.html', {'error': '유저이름 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
+			return render(request, 'user/signin.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
 	elif request.method == 'GET':
 		user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
 		if user:  # 로그인이 되어 있다면
