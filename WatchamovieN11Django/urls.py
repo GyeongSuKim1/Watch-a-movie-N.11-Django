@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from movie import views
 from post import views
+from user import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('movie.urls')),
     path('', include('post.urls')),
+    path('', include('user.urls')),
 ]
