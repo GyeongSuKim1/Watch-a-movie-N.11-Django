@@ -6,31 +6,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
     <script>
-         $(document).ready(function () {
-
-            $('#modal_open').click(function() {
-                $('#modal').show();
-            })
-            $("#modal_close").click(function () {
-              $('#modal').hide();
-            })
-
-        })
-
-         function ShowSliderValue(sVal) {
-             var obValueView = document.getElementById("slider_value_view");
-             obValueView.innerHTML = sVal
-         }
-
-         var RangeSlider = function () {
-             var range = $('.slider_range');
-             range.on('input', function () {
-                 ShowSliderValue(this.value);
-             });
-         };
-
-         RangeSlider();
-
 
     </script>
 </head>
@@ -89,51 +64,76 @@
         -webkit-transition: .2s;
         transition: opacity .2s;
         margin-top: 5%;
+        cursor:pointer;
     }
     .score {
         margin-top: 40px;
+        font-weight: bold;
     }
     .comment {
         width: 80%;
         height: 150px;
-        margin-top: 7%;
+        margin-top: 5%;
         margin-bottom: 7%;
+        resize: none;
+        border-radius: 3px;
+
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .btn1 {
+        width: 120px;
+        height: 50px;
+        border: none;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor:pointer;
+    }
+    .btn2 {
+        width: 120px;
+        height: 50px;
+        border: none;
+        background-color: dodgerblue;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor:pointer;
     }
 </style>
 <body>
-
-<!--<button id="modal_open">
-    열기
-</button>-->
-<div class="modal" id="modal">
-    <div class="modal_back">
-        <div class="modal_content">
-            <div class="modal_title">
-                내 평점 등록
-            </div>
-            <div class="modal_component">
-                <div class="title">
-                    {{ 영화 제목 }}
+    <div class="modal" id="modal">
+        <div class="modal_back">
+            <div class="modal_content">
+                <div class="modal_title">
+                    내 평점 등록
                 </div>
-                <div>
+                <div class="modal_component">
+                    <div class="title">
+                        {{ 영화 제목 }}
+                    </div>
+                    <div>
 
-                    <div class="slidecontainer" >
-                        <span>평점을 매겨주세요.</span><br>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange"><br>
-                        <span class="score">5.0</span>
+                        <div class="slidecontainer" >
+                            <span>평점을 매겨주세요.</span><br>
+                            <input type="range" min="1" max="5" step="0.1" value="3" class="slider" id="myRange" oninput="document.getElementById('score').innerHTML=this.value;"><br>
+                            <span id="score" class="score"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <textarea class="comment" placeholder="감상평을 남겨주세요."></textarea>
+                    </div>
+                    <div>
+                        <button class="btn1" id="btn1">취소</button> <button class="btn2 btn2">확인</button>
                     </div>
                 </div>
-                <div>
-                    <textarea class="comment" placeholder="감상평을 남겨주세요."></textarea>
-                </div>
-                <div>
-                    <button>취소</button> <button>확인</button>
-                </div>
+
             </div>
 
         </div>
-
     </div>
-</div>
 </body>
 </html>
