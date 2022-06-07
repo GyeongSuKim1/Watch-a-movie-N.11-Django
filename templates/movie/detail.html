@@ -32,25 +32,29 @@
     </div>
         <!-- 리뷰 작성하기 -->
     <div>
-        <button type="submit" class="btn btn-primary">리뷰 작성하기</button>
+        <a type="submit" href="/detail/post/{{ movie.id }}" class="btn btn-primary">리뷰 작성하기</a>
     </div>
         <!-- 추천된 영화가 나오는 곳 -->
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-            <div class="col">
-                <div class="card h-100">
-                    <a href="/detail/{{ movie.id }}">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="title">{{ movie.title }}</h5>
-                        <p class="tag">{{ movie.tags }}</p>
-                        <p class="score">{{ movie.score }}</p>
-                        <p class="desc">{{ movie.desc }}</p>
+            {% if movies and recommend %}
+            {% for movie in recommend %}
+                <form action="/detail/{{ movie.id }}" method="get">
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="/detail/{{ movie.id }}">
+                        <img src="{{ movie.image }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="title">{{ movie.title }}</h5>
+                            <p class="tag">{{ movie.tags }}</p>
+                            <p class="score">{{ movie.score }}</p>
+                        </div>
+                        </a>
                     </div>
-                    </a>
                 </div>
-            </div>
+                </form>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 

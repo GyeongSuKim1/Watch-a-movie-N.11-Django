@@ -6,7 +6,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
         {% if movies %}
         {% for movie in movies %}
-        <form action="/detail/{{ movie.id }}" method="post">
+        <form action="/detail/{{ movie.id }}">
             <div class="col">
                 <div class="card h-100">
                     <a href="/detail/{{ movie.id }}">
@@ -15,7 +15,6 @@
                         <h5 class="title">{{ movie.title }}</h5>
                         <p class="tag">{{ movie.tags }}</p>
                         <p class="score">{{ movie.score }}</p>
-                        <p class="desc">{{ movie.desc }}</p>
                     </div>
                     </a>
                 </div>
