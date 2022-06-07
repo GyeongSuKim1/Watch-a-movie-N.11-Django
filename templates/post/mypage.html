@@ -10,13 +10,20 @@
     .bi {
         width : 100px;
     }
+    .button {
+        width : 50px;
+        border : none;
+        color : white;
+        background-color : black;
+        font-weight : bold;
+    }
 {% endblock %}
 
 
 {% block content %}
     <div class="text">
     <i style="width: 100px;" class="bi bi-camera-reels-fill"></i>
-    <h1 class="name">{{ username }}username님의 </h1>
+    <h1 class="name">{{ username }}님의</h1>
     <h1 class="page">페이지입니다.</h1>
     </div>
 
@@ -24,9 +31,10 @@
         <thead>
         <tr>
             <th style="width: 8.33%" scope="col">#</th>
-            <th style="width: 50%" scope="col">영화 제목</th>
-            <th style="width: 25%" scope="col">평점</th>
-            <th style="width: 16.6%" scope="col">작성일</th>
+            <th style="width: 45%" scope="col">영화 제목</th>
+            <th style="width: 20%" scope="col">평점</th>
+            <th style="width: 26.6%" scope="col">작성일</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -34,28 +42,29 @@
         <tr>
             <th scope="row">1</th>
             <td>{{ post.title }}</td>
-            <td>{{ post.rate }}</td>
+            <td>{{ post.score }}</td>
             <td>{{ post.created_at|timesince }}</td>
+            <td><button class="button">삭제</button></td>
         </tr>
         {% endfor %}
-        <tr>
-            <th scope="row">1</th>
-            <td>바람과 함께 사라지다</td>
-            <td>7.8</td>
-            <td>2022.06.03</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>어린 왕자</td>
-            <td>6.9</td>
-            <td>2022.05.28</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>닥터스트레인지</td>
-            <td>9.2</td>
-            <td>2022.05.20</td>
-        </tr>
+{#        <tr>#}
+{#            <th scope="row">1</th>#}
+{#            <td>바람과 함께 사라지다</td>#}
+{#            <td>7.8</td>#}
+{#            <td>2022.06.03</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th scope="row">2</th>#}
+{#            <td>어린 왕자</td>#}
+{#            <td>6.9</td>#}
+{#            <td>2022.05.28</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th scope="row">2</th>#}
+{#            <td>닥터스트레인지</td>#}
+{#            <td>9.2</td>#}
+{#            <td>2022.05.20</td>#}
+{#        </tr>#}
         </tbody>
     </table>
 
