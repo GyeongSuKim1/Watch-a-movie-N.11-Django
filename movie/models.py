@@ -22,7 +22,7 @@ class Movie(models.Model):
     image = models.URLField(max_length=256)
     score = models.DecimalField(max_digits=2, decimal_places=1)
     desc = models.TextField()
-    tag = models.ManyToManyField(Tag)
+    tag = models.ManyToManyField(Tag, related_name='movies')
 
     def __str__(self):
         return self.title
