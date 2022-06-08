@@ -1,28 +1,61 @@
 {% extends 'base.html' %}
 
+{% block style %}
+    .mycards {
+        margin: 20px auto 0px auto;
+        width: 60%;
+        max-width: 1600px;
+
+
+    }
+    .image-title  {
+        width: 640px;
+        margin: auto;
+
+    }
+    .desc {
+        padding-top: 20px;
+        width: 640px;
+        margin: auto;
+    }
+    .btn {
+        margin: 40px 0px;
+    }
+    .recommends{
+        overflow: scroll;
+        margin: auto;
+    }
+    .recommend {
+        width: 1600px;
+        float: left;
+    }
+
+{% endblock %}
+
 {% block content %}
 
     <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+        <div class="row row-cols-md-2 image-title" id="cards-box">
             {% if selected %}
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="{{ selected.image }}" class="card-img-top">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ selected.image }}" class="card-img-top">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="title">{{ selected.title }}</h5>
+                        <p class="tag">{{ selected.tags }}</p>
+                        <p class="score">{{ selected.score }}</p>
                     </div>
                 </div>
-                <div class="col">
+            </div>
+        </div>
+                <div class="col row align-items-center desc">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="title">{{ selected.title }}</h5>
-                            <p class="tag">{{ selected.tags }}</p>
-                            <p class="score">{{ selected.score }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <p class="desc">{{ selected.desc }}</p>
+                            <p>{{ selected.desc }}</p>
                         </div>
                     </div>
                 </div>
@@ -31,12 +64,12 @@
         </div>         
     </div>
         <!-- 리뷰 작성하기 -->
-    <div>
-        <a type="submit" href="/detail/post/{{ movie.id }}" class="btn btn-primary">리뷰 작성하기</a>
+    <div class="d-grid gap-2 col-1 mx-auto">
+        <a type="submit" href="/detail/post/{{ movie.id }}" class="btn btn-secondary btn-lg">리뷰 작성하기</a>
     </div>
         <!-- 추천된 영화가 나오는 곳 -->
-    <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+    <div class="mycards recommends">
+        <div class="d-flex flex-row bd-highlight recommend" id="cards-box">
             {% if movies and recommend %}
             {% for movie in recommend %}
                 <form action="/detail/{{ movie.id }}" method="get">
@@ -46,8 +79,8 @@
                         <img src="{{ movie.image }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="title">{{ movie.title }}</h5>
-                            <p class="tag">{{ movie.tags }}</p>
-                            <p class="score">{{ movie.score }}</p>
+{#                            <p class="tag">{{ movie.tags }}</p>#}
+{#                            <p class="score">{{ movie.score }}</p>#}
                         </div>
                         </a>
                     </div>

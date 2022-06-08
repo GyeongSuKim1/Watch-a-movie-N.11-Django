@@ -1,27 +1,36 @@
 {% extends 'base.html' %}
 
+{% block style %}
+    .mycards {
+        margin: 20px auto 0px auto;
+        width: 60%;
+        max-width: 1600px;
+        }
+{% endblock %}
 
 {% block content %}
-<div class="mycards">
-    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-        {% if movies %}
-        {% for movie in movies %}
-        <form action="/detail/{{ movie.id }}">
-            <div class="col">
-                <div class="card h-100">
-                    <a href="/detail/{{ movie.id }}">
-                    <img src="{{ movie.image }}" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="title">{{ movie.title }}</h5>
-                        <p class="tag">{{ movie.tags }}</p>
-                        <p class="score">{{ movie.score }}</p>
+
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+            {% if movies %}
+            {% for movie in movies %}
+                <form action="/detail/{{ movie.id }}">
+                    <div class="col">
+                        <div class="card h-100">
+                            <a href="/detail/{{ movie.id }}">
+                            <img src="{{ movie.image }}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="title">{{ movie.title }}</h5>
+                                <p class="tag">{{ movie.tags }}</p>
+                                <p class="score">{{ movie.score }}</p>
+                            </div>
+                            </a>
+                        </div>
                     </div>
-                    </a>
-                </div>
-            </div>
-        </form>
-        {% endfor %}
-        {% endif %}
+                </form>
+            {% endfor %}
+            {% endif %}
+        </div>
     </div>
-</div>
+
 {% endblock %}
