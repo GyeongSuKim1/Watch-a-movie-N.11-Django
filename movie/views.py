@@ -8,7 +8,7 @@ def home(request):
 
         for movie in movies:
             print(f'무비들 ->{movie.tag.all()}')
-            movie.tags = list(movie.tag.all()) # 태그 넣어주기
+            movie.tags = list(movie.tag.all())# 태그 넣어주기
 
         return render(request, 'movie/home.html', {'movies' : movies})
 
@@ -29,7 +29,7 @@ def detail(request, id):
             print(f'선택영화와 추천영화가 같다면 제외하고 보여주기!{recommend}')
 
             for movie in recommend:
-                movie.tags = list(movie.tag.all())
+                # movie.tags = list(movie.tag.all())
                 print(f'추천영화 리스트 들!->{movie}')
 
             content = {
