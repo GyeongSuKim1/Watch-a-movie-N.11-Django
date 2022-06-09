@@ -13,6 +13,3 @@ class PostModel(models.Model):
     score = models.DecimalField(max_digits=2, decimal_places=1) #소수점으로 데이터 지정
     content = models.TextField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
