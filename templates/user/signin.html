@@ -4,33 +4,167 @@
 
 {% block content %}
 
-	<div class="container">
-		<div class="wrap">
-			<h2 class="title-center"> 로그인</h2>
+	<div class="content">
+		<section class="sign">
+			<h1>로그인</h1>
 			<form class="form-area" method="post" action="/sign-in/">
 				{% csrf_token %}
-				<div class="form-group mt-2 mb-2">
+
+				<!-- 아이디 -->
+				<div class="int-area">
+					<input type="text" name="username" id="username" autocomplete="off" required>
 					<label for="username">아이디</label>
-					<input type="text" class="form-control" id="username" name="username">
-				</div>
-				<div class="form-group mt-2 mb-2">
-					<label for="password">비밀번호</label>
-					<input type="password" class="form-control" id="password" name="password">
 				</div>
 
+				<!-- 패스워드 -->
+				<div class="int-area">
+					<input type="password" name="password" id="password" autocomplete="off" required>
+					<label for="password">비밀번호</label>
+				</div>
+
+				<!-- 에러 메세지 반환 -->
 				{% if error %}
 					<div class="alert alert-danger" role="alert">
 						{{ error }}
 					</div>
 				{% endif %}
 
-				<div style="float: right">
-					<button type="submit" class="btn btn-primary">로그인</button>
-					<a href="/sign-up" class="btn btn-secondary">회원가입</a>
+				<!-- 로그인 -->
+				<div class="btn-area">
+					<button type="submit" id="btn">로그인</button>
 				</div>
 			</form>
 
-		</div>
+			<!-- 회원가입 창 이동 -->
+			<div class="caption">
+				<a href="/sign-up">회원가입</a>
+			</div>
+		</section>
 	</div>
+{% endblock %}
 
+
+	<!-- CSS 부분 -->
+{% block style %}
+	* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+
+	.content {
+	display: flex;
+	justify-content: center;
+	padding-top: 15vh;
+	height: 90vh;
+
+	/* background: url("https://t1.daumcdn.net/cfile/tistory/9996A34C5BE2DB7C34") no-repeat;
+	background-position: 50% 22%;
+	background-size: 53%; */
+	}
+
+	.content::before {
+	content: "";
+	position: absolute;
+	z-index: 1;
+
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	/* background-color: rgba(0, 0, 0, .7); */
+	}
+
+	.sign {
+	position: relative;
+	z-index: 2;
+
+	}
+
+	.sign h1 {
+	font-size: 32px;
+	color: black;
+	text-align: center;
+	margin-bottom: 60px;
+	}
+
+	/* 아이디, 패스워스 박스 */
+	.int-area {
+	position: relative;
+	width: 400px;
+	margin-top: 20px;
+	}
+
+	.int-area:first-child {
+	margin-top: 0;
+	}
+
+	.int-area input {
+	width: 100%;
+	padding: 20px 10px 10px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid gray;
+	font-size: 18px;
+	color: black;
+	outline: none;
+	}
+
+	.int-area label {
+	position: absolute;
+	left: 10px;
+	top: 15px;
+	font-size: 18px;
+	color: gray;
+	transition: all .5s ease;
+	}
+
+	.int-area label.warning {
+	color: red !important;
+	animation: warning .3s ease;
+	animation-iteration-count: 3;
+	}
+
+	@keyframes warning{
+	0% {transform: translateX(-8px);}
+	25% {transform: translateX(8px);}
+	50% {transform: translateX(-8px);}
+	75% {transform: translateX(8px);}
+	}
+
+	.int-area input:focus + label,
+	.int-area input:valid + label {
+	top: -2px;
+	font-size: 13px;
+	color: rgb(62, 177, 177);   /* 글자 애니메이션 색상 지정 */
+	}
+
+
+	/* 버튼 */
+	.btn-area {
+	margin-top: 30px;
+	}
+
+	.btn-area button {
+	width: 100%;
+	height: 50px;
+	background: rgb(19, 116, 207);
+	color: white;
+	font-size: 20px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	}
+
+	.caption {
+	margin-top: 20px;
+	text-align: center;
+	}
+
+	.caption a {
+	font-size: 15px;
+	color: gray;
+	text-decoration: none;
+	}
 {% endblock %}
