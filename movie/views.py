@@ -47,9 +47,8 @@ def detail(request, id):
         else:
             return render(request, 'movie/detail.html')
 
-
     elif request.method == 'POST':
-        return render(request, 'movie/detail.html')
+        return render(request, 'post/post.html')
     
 
 
