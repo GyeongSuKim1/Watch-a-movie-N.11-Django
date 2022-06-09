@@ -14,10 +14,10 @@
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
             {% if movies %}
             {% for movie in movies %}
-                <form action="/detail/{{ movie.id }}">
+                <form action="/detail/{{ movie.id }}/">
                     <div class="col">
                         <div class="card h-100">
-                            <a href="/detail/{{ movie.id }}">
+                            <a href="/detail/{{ movie.id }}/">
                             <img src="{{ movie.image }}" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="title">{{ movie.title }}</h5>

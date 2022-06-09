@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 
+
 {% block style %}
     .mycards {
         margin: 20px auto 0px auto;
         width: 60%;
         max-width: 1600px;
-
-
     }
     .image-title  {
         width: 640px;
         margin: auto;
-
     }
     .desc {
         padding-top: 20px;
@@ -29,19 +27,21 @@
         width: 1600px;
         float: left;
     }
-
 {% endblock %}
 
-{% block content %}
 
+{% block content %}
+<!-- 선택한 영화 -->
     <div class="mycards">
+        {% if selected %}
         <div class="row row-cols-md-2 image-title" id="cards-box">
-            {% if selected %}
+<!-- 선택한 영화의 image -->
             <div class="col">
                 <div class="card h-100">
                     <img src="{{ selected.image }}" class="card-img-top">
                 </div>
             </div>
+<!-- 선택한 영화의 title/tag/score -->
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
@@ -52,30 +52,39 @@
                 </div>
             </div>
         </div>
-                <div class="col row align-items-center desc">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <p>{{ selected.desc }}</p>
-                        </div>
-                    </div>
+<!-- 선택한 영화의 desc -->
+        <div class="col row align-items-center desc">
+            <div class="card h-100">
+                <div class="card-body">
+                    <p>{{ selected.desc }}</p>
                 </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 
-            {% endif %}
-        </div>         
-    </div>
-        <!-- 리뷰 작성하기 -->
-    <div class="d-grid gap-2 col-1 mx-auto">
-        <a type="submit" href="/detail/post/{{ movie.id }}" class="btn btn-secondary btn-lg">리뷰 작성하기</a>
-    </div>
-        <!-- 추천된 영화가 나오는 곳 -->
+
+<!-- 리뷰 작성하기 -->
+    {% if selected %}
+
+    {% csrf_token %}
+        <div class="d-grid gap-2 col-1 mx-auto">
+            <a href="/detail/post/{{ selected.id }}/" type="submit" class="btn btn-secondary btn-lg">리뷰 작성하기</a>
+        </div>
+
+    {% endif %}
+
+
+
+<!-- 추천된 영화가 나오는 곳 -->
     <div class="mycards recommends">
         <div class="d-flex flex-row bd-highlight recommend" id="cards-box">
             {% if movies and recommend %}
             {% for movie in recommend %}
-                <form action="/detail/{{ movie.id }}" method="get">
+                <form action="/detail/{{ movie.id }}/" method="get">
                 <div class="col">
                     <div class="card h-100">
-                        <a href="/detail/{{ movie.id }}">
+                        <a href="/detail/{{ movie.id }}/">
                         <img src="{{ movie.image }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="title">{{ movie.title }}</h5>

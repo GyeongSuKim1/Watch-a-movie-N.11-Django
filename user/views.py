@@ -64,4 +64,4 @@ def sign_in_view(request):
 @login_required
 def logout(request):
 	auth.logout(request)
-	return redirect('/mypage/')
+	return redirect('/')

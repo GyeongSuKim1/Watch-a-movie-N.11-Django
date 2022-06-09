@@ -25,6 +25,9 @@
         .timeline-container {
             margin-top: 25px
         }
+        .my-page {
+            float: right;
+        }
 
         {% block style %}
         {% endblock %}
@@ -33,12 +36,12 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="/home/">Watch a movie N.11</a>
+        <a class="navbar-brand" href="/">Watch a movie N.11</a>
         <form class="form-inline my-2 my-lg-0">
                 {% if not user.is_authenticated %}
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/sign-in"> Sign In <span class="sr-only"></span></a>
+                        <a class="nav-link" href="/sign-in/"> Sign In <span class="sr-only"></span></a>
                     </li>
                 </ul>
                 {% else %}
@@ -48,8 +51,13 @@
 {#                           {{ user.username }} 님 반갑습니다!#}
                        </span>
                     </li>
+
                     <li class="nav-item active">
-                        <a class="nav-link" href="/home"> 로그아웃 </a>
+                        <a class="nav-link" href="/mypage/">My Page</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/logout/"> 로그아웃 </a>
                     </li>
                 </ul>
                 {% endif %}
