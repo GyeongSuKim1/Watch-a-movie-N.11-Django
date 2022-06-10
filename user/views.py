@@ -17,7 +17,7 @@ def sign_up_view(request):
 	if request.method == 'GET':  # GET 메소드 로 오청이 들어 올 경우
 		user = request.user.is_authenticated  # 로그인 된 사용자가 요청하는지 검사
 		if user:  # 로그인이 되어있다면
-			return redirect('/mypage')
+			return redirect('/')
 		else:  # 로그인이 되어있지 않다면
 			return render(request, 'user/signup.html')
 	elif request.method == 'POST':
@@ -50,13 +50,13 @@ def sign_in_view(request):
 		me = auth.authenticate(request, username=username, password=password)  # 사용자 불러오기
 		if me is not None:  # 저장된 사용자의 패스워드와 입력받은 패스워드 비교
 			auth.login(request, me)
-			return redirect('/mypage/')
+			return redirect('/')
 		else:  # 로그인 실패하면 다시 로그인 페이지를 보여주기
 			return render(request, 'user/signin.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
 	elif request.method == 'GET':
 		user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
 		if user:  # 로그인이 되어 있다면
-			return redirect('/mypage/')
+			return redirect('/')
 		else:  # 로그인이 되어 있지 않다면
 			return render(request, 'user/signin.html')
 
@@ -64,4 +64,4 @@ def sign_in_view(request):
 @login_required
 def logout(request):
 	auth.logout(request)
-	return redirect('/mypage/')
+	return redirect('/')
