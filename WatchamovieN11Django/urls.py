@@ -23,4 +23,3 @@ urlpatterns = [
     path('', include('post.urls')),
     path('', include('movie.urls')),
 ]
-

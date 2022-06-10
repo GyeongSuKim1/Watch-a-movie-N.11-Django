@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import auth
 # 로그인의 여부만 검증 해 주는 기능
 from django.contrib.auth.decorators import login_required
+from movie.models import Movie, Taste
 
 
 # Create your views here.
@@ -40,6 +41,8 @@ def sign_up_view(request):
 			else:
 				UserModel.objects.create_user(username=username, password=password)
 				return redirect('/sign-in')
+
+
 
 
 def sign_in_view(request):

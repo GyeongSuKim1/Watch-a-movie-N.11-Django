@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <form action="/taste/"  method="POST">
+    {% csrf_token %}
+        {% if movies %}
+            {% for movie in movies %}
+                <div>
+                    <input type="checkbox" name="title" value="{{ movie.id }}">
+                    <label for="title">{{ movie.title }}</label>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <button type="submit">OK</button>
+    </form>
+{% endblock %}

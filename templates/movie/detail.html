@@ -1,10 +1,101 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>detail</title>
-</head>
-<body>
-    <h1>detail</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- 선택한 영화 -->
+    <div class="mycards">
+        {% if selected %}
+        <div class="row row-cols-md-2 image-title" id="cards-box">
+<!-- 선택한 영화의 image -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ selected.image }}" class="card-img-top">
+                </div>
+            </div>
+<!-- 선택한 영화의 title/tag/score -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="title">{{ selected.title }}</h5>
+                        <p class="tag">{{ selected.tags }}</p>
+                        <p class="score">{{ selected.score }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- 선택한 영화의 desc -->
+        <div class="col row align-items-center desc">
+            <div class="card h-100">
+                <div class="card-body">
+                    <p>{{ selected.desc }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+<!-- 리뷰 작성하기 -->
+    {% if selected %}
+    {% csrf_token %}
+        <div class="d-grid gap-2 col-1 mx-auto">
+            <a href="/detail/post/{{ selected.id }}/" type="submit" class="btn btn-secondary btn-lg">리뷰 작성하기</a>
+        </div>
+    {% endif %}
+
+
+<!-- 추천된 영화가 나오는 곳 -->
+    <div class="mycards recommends">
+        <div class="d-flex flex-row bd-highlight recommend" id="cards-box">
+            {% if movies and recommend %}
+            {% for movie in recommend %}
+                <form action="/detail/{{ movie.id }}/" method="get">
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="/detail/{{ movie.id }}/">
+                        <img src="{{ movie.image }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="title">{{ movie.title }}</h5>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                </form>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{%  endblock %}
+
+
+{% block style %}
+    .mycards {
+        margin: 20px auto 0px auto;
+        width: 60%;
+        max-width: 1600px;
+    }
+    .image-title  {
+        width: 640px;
+        margin: auto;
+    }
+    .desc {
+        padding-top: 20px;
+        width: 640px;
+        margin: auto;
+    }
+    .btn {
+        margin: 40px 0px;
+    }
+    .recommends{
+        overflow: scroll;
+        margin: auto;
+    }
+    .recommend {
+        width: 1600px;
+        float: left;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+{% endblock %}

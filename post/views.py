@@ -89,6 +89,3 @@ def update(request, id):
         all_post = PostModel.objects.filter(author_id=user.id).order_by('-created_at')
 
         return render(request, 'post/mypage.html', {'username': user, 'posts': all_post})
-
-
-

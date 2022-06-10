@@ -1,0 +1,116 @@
+[
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Adventure"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Fantasy"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Animation"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Drama"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Horror"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Action"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Comedy"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "History"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Western"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Thriller"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Crime"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Documentary"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Science Fiction"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Mystery"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Music"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Romance"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "Family"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "War"
+    }
+  },
+  {
+    "model": "movie.tag",
+    "fields": {
+      "tag": "TV Movie"
+    }
+  }
+]
