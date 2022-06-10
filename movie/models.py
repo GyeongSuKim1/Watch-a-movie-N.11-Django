@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 
 
-
 class Tag(models.Model):
     class Meta:
         db_table = "tag"
@@ -11,7 +10,6 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.tag
-
 
 
 class Movie(models.Model):
@@ -29,11 +27,9 @@ class Movie(models.Model):
         return self.title
 
 
-
 class Taste(models.Model):
     class Meta:
         db_table = "taste"
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    taste = models.CharField(max_length=100)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
