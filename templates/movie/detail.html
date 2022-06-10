@@ -1,35 +1,5 @@
 {% extends 'base.html' %}
 
-
-{% block style %}
-    .mycards {
-        margin: 20px auto 0px auto;
-        width: 60%;
-        max-width: 1600px;
-    }
-    .image-title  {
-        width: 640px;
-        margin: auto;
-    }
-    .desc {
-        padding-top: 20px;
-        width: 640px;
-        margin: auto;
-    }
-    .btn {
-        margin: 40px 0px;
-    }
-    .recommends{
-        overflow: scroll;
-        margin: auto;
-    }
-    .recommend {
-        width: 1600px;
-        float: left;
-    }
-{% endblock %}
-
-
 {% block content %}
 <!-- 선택한 영화 -->
     <div class="mycards">
@@ -66,14 +36,11 @@
 
 <!-- 리뷰 작성하기 -->
     {% if selected %}
-
     {% csrf_token %}
         <div class="d-grid gap-2 col-1 mx-auto">
             <a href="/detail/post/{{ selected.id }}/" type="submit" class="btn btn-secondary btn-lg">리뷰 작성하기</a>
         </div>
-
     {% endif %}
-
 
 
 <!-- 추천된 영화가 나오는 곳 -->
@@ -88,8 +55,6 @@
                         <img src="{{ movie.image }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="title">{{ movie.title }}</h5>
-{#                            <p class="tag">{{ movie.tags }}</p>#}
-{#                            <p class="score">{{ movie.score }}</p>#}
                         </div>
                         </a>
                     </div>
@@ -101,3 +66,36 @@
     </div>
 
 {%  endblock %}
+
+
+{% block style %}
+    .mycards {
+        margin: 20px auto 0px auto;
+        width: 60%;
+        max-width: 1600px;
+    }
+    .image-title  {
+        width: 640px;
+        margin: auto;
+    }
+    .desc {
+        padding-top: 20px;
+        width: 640px;
+        margin: auto;
+    }
+    .btn {
+        margin: 40px 0px;
+    }
+    .recommends{
+        overflow: scroll;
+        margin: auto;
+    }
+    .recommend {
+        width: 1600px;
+        float: left;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+{% endblock %}

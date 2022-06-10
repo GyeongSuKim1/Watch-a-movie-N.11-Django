@@ -1,13 +1,5 @@
 {% extends 'base.html' %}
 
-{% block style %}
-    .mycards {
-        margin: 20px auto 0px auto;
-        width: 60%;
-        max-width: 1600px;
-        }
-{% endblock %}
-
 {% block content %}
 
     <div class="mycards">
@@ -22,7 +14,6 @@
                             <div class="card-body">
                                 <h5 class="title">{{ movie.title }}</h5>
                                 <p class="tag">{{ movie.tags }}</p>
-                                <p class="score">{{ movie.score }}</p>
                             </div>
                             </a>
                         </div>
@@ -34,3 +25,16 @@
     </div>
 
 {% endblock %}
+
+{% block style %}
+    .mycards {
+        margin: 20px auto 0px auto;
+        width: 60%;
+        max-width: 1600px;
+        }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+{% endblock %}
+
