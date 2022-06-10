@@ -53,9 +53,24 @@ def sign_in_view(request):
 		me = auth.authenticate(request, username=username, password=password)  # 사용자 불러오기
 		if me is not None:  # 저장된 사용자의 패스워드와 입력받은 패스워드 비교
 			auth.login(request, me)
-			return redirect('/')
+			# 첫 로그인에서 선호하는 영화를 고를 수 있는 체크박스를 taste.html에 추천영화를 보여주고
+			# 이미 선호하는 영화가 있는 user 라면, home.html으로 보여준다.
+			movies = Movie.objects.order_by('?')[:20]
+			picked = list(Taste.objects.values('user_id').values_list('user_id'))
+
+			a = []
+			for p in set(picked):
+				a.append(p[0])
+
+			if request.user.id in a:
+				print(movies)
+				return render(request, 'movie/home.html', {'movies': movies})
+
+			return render(request, 'recommend/taste.html', {'movies': movies})
+
 		else:  # 로그인 실패하면 다시 로그인 페이지를 보여주기
-			return render(request, 'user/signin.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
+				return render(request, 'user/signin.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
+
 	elif request.method == 'GET':
 		user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
 		if user:  # 로그인이 되어 있다면
