@@ -30,9 +30,10 @@ class Movie(models.Model):
 
 
 
-class Machine(models.Model):
+class Taste(models.Model):
     class Meta:
-        db_table = "machine"
+        db_table = "taste"
 
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    movie_id = models.ManyToManyField(Movie)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    taste = models.CharField(max_length=100)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

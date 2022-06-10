@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Tag, Movie, Machine
+from .models import Tag, Movie, Taste
 
 # Register your models here.
 
 admin.site.register(Tag)
 admin.site.register(Movie)
-admin.site.register(Machine)
+admin.site.register(Taste)
 
 
 # class Movie(admin.ModelAdmin):
