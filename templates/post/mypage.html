@@ -20,6 +20,10 @@
     .table {
         text-align : center;
     }
+    .post-title {
+        text-decoration: none;
+        color: black;
+    }
 {% endblock %}
 
 
@@ -45,7 +49,11 @@
             {% csrf_token %}
             <tbody>
                 <tr>
-                    <td>{{ post.title }}</td>
+                    <td>
+                        <a class="post-title" href="/detail/edit/{{ post.id }}/">
+                            {{ post.title }}
+                        </a>
+                    </td>
                     <td>{{ post.score }}</td>
                     <td>{{ post.created_at|timesince }}</td>
                     <td>
