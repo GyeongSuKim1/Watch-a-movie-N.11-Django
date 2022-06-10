@@ -7,7 +7,7 @@ from django.contrib import messages
 
 
 # 게시물 작성 페이지
-@login_required
+# @login_required
 def show_post(request, id):
     user = request.user
     if user:
@@ -34,8 +34,6 @@ def show_post(request, id):
             PM.author_id = user.id
             PM.save()
             return redirect('/mypage')
-
-
 
 
 

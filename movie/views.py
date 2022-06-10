@@ -8,14 +8,14 @@ def home(request):
 
         for movie in movies:
             movie.tags = ", " .join(list(movie.tag.all().values_list('tag', flat=True)))    # 태그
-            print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ")         # movie.tags 는 변수일 뿐. 다만, list안의 movie.tag랑 중복되면 error 발생
-            print(movie.tag.all())                                                 # 쿼리셋으로 출력됨
-            print(list(movie.tag.all()))                                 # 처음 버전 # 리스트 형식 [<Tag: Horror>]
-            print(list(movie.tag.all().values_list()))                             # values_list : (id, 'Horror') 처럼 value 값을 다 보여줌 / 현재Tag에 tag만 있어서 2개밖에 안나옴
-            print(list(movie.tag.all().values_list('tag')))                        # values_list : 클래스 안에 있는 value값 중에 (title/image등에서) 'tag'값만
-            print(list(movie.tag.all().values_list('tag', flat=True)))              # flat : ()를 빼주어 값만 보여줌
-            print(", ".join(list(movie.tag.all().values_list('tag', flat=True))))   # join : list -> str & ", "을 더해줌
-            print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ")
+            # print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ")         # movie.tags 는 변수일 뿐. 다만, list안의 movie.tag랑 중복되면 error 발생
+            # print(movie.tag.all())                                                 # 쿼리셋으로 출력됨
+            # print(list(movie.tag.all()))                                 # 처음 버전 # 리스트 형식 [<Tag: Horror>]
+            # print(list(movie.tag.all().values_list()))                             # values_list : (id, 'Horror') 처럼 value 값을 다 보여줌 / 현재Tag에 tag만 있어서 2개밖에 안나옴
+            # print(list(movie.tag.all().values_list('tag')))                        # values_list : 클래스 안에 있는 value값 중에 (title/image등에서) 'tag'값만
+            # print(list(movie.tag.all().values_list('tag', flat=True)))              # flat : ()를 빼주어 값만 보여줌
+            # print(", ".join(list(movie.tag.all().values_list('tag', flat=True))))   # join : list -> str & ", "을 더해줌
+            # print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ")
         return render(request, 'movie/home.html', {'movies': movies})
 
     elif request.method == 'POST':
