@@ -41,9 +41,3 @@ def detail(request, id):
 
     elif request.method == 'POST':
         return render(request, 'post/post.html')
-    
-
-
-
-
-

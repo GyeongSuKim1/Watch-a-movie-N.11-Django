@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    .modal_back {
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+
+        position: fixed;
+    }
+    .modal_content {
+        background-color: white;
+        width: 30%;
+        height: 60%;
+
+        margin: 7% auto;
+
+    }
+    .modal_title {
+        background-color: black;
+        height: 40px;
+        color: white;
+        padding-left: 3px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .modal_component {
+        text-align: center;
+    }
+    .title {
+        margin-top: 7%;
+        margin-bottom: 5%;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .slider {
+        -webkit-appearance: none;
+        width: 55%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        margin-top: 5%;
+        cursor:pointer;
+    }
+    .score {
+        margin-top: 40px;
+        font-weight: bold;
+    }
+    .comment {
+        width: 80%;
+        height: 150px;
+        margin-top: 5%;
+        margin-bottom: 7%;
+        resize: none;
+        border-radius: 3px;
+
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .btn1 {
+        width: 120px;
+        height: 50px;
+        border: none;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor:pointer;
+    }
+    .btn2 {
+        width: 120px;
+        height: 50px;
+        border: none;
+        background-color: dodgerblue;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor:pointer;
+    }
+
+</style>
+<body>
+    <div class="modal" id="modal">
+        <div class="modal_back">
+            <div class="modal_content">
+                <div class="modal_title">
+                    게시글 수정
+                </div>
+                <form action="/detail/update/{{ article.id }}" method="POST">
+                    {% csrf_token %}
+                     <div class="modal_component">
+                        <div class="title">
+                            {{ movie.title }}
+                        </div>
+                        <div>
+                            <div class="slidecontainer" >
+                                <span>평점을 바꿔주세요.</span><br>
+                                <input required type="range" min="1" max="5" step="0.1" value="{{ article.score }}" class="slider" id="myRange" name="myRange" oninput="document.getElementById('score').innerHTML=this.value;" ><br>
+                                <span id="score" class="score">{{ article.score }}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea required name="comment" id="comment" class="comment" placeholder="">{{ article.content }}</textarea>
+                        </div>
+                        <div>
+                            <button type="button" onclick="location.href='/mypage'" class="btn1" id="btn1">취소</button> <button class="btn2" type="submit">작성</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

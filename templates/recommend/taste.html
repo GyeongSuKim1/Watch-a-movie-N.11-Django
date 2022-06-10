@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <form action="{% url 'recommend:taste' %}"  method="post">
+    <form action="/taste/"  method="POST">
     {% csrf_token %}
         {% if movies %}
             {% for movie in movies %}

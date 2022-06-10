@@ -2,110 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        body {
-            margin: 0;
-        }
-        .modal_back {
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            position: fixed;
-        }
-        .modal_content {
-            background-color: white;
-            width: 30%;
-            height: 60%;
-            border-radius: 10px;
-            margin: 7% auto;
-        }
-        .modal_title {
-            background-color: black;
-            height: 40px;
-            color: white;
-            border-radius: 5px;
-            padding-left: 3px;
-            font-size: 25px;
-            font-weight: bold;
-        }
-        .modal_component {
-            text-align: center;
-        }
-        .title {
-            margin-top: 7%;
-            margin-bottom: 5%;
-            font-size: 40px;
-            font-weight: bold;
-        }
-        .slider {
-            -webkit-appearance: none;
-            width: 50%;
-            height: 15px;
-            border-radius: 5px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-            margin-top: 5%;
-            cursor:pointer;
-        }
-        .score {
-            margin-top: 40px;
-            font-weight: bold;
-        }
-        .comment {
-            width: 80%;
-            height: 150px;
-            margin-top: 5%;
-            margin-bottom: 7%;
-            resize: none;
-            border-radius: 3px;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        .btn1 {
-            width: 120px;
-            height: 50px;
-            border: none;
-            background-color: black;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 3px;
-            cursor:pointer;
-        }
-        .btn2 {
-            width: 120px;
-            height: 50px;
-            border: none;
-            background-color: dodgerblue;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 3px;
-            cursor:pointer;
-        }
-        .exist {
-            width: 550px;
-            height: 10%;
-            background-color: white;
-            margin: auto;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 20px;
-            padding-top: 50px;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Review</title>
 </head>
 
+<style>
+    body {
+        margin: 0;
+    }
+
+    .modal_back {
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+
+        position: fixed;
+    }
+    .modal_content {
+        background-color: white;
+        width: 30%;
+        height: 60%;
+
+        margin: 7% auto;
+
+    }
+    .modal_title {
+        background-color: black;
+        height: 40px;
+        color: white;
+        padding-left: 3px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .modal_component {
+        text-align: center;
+    }
+    .title {
+        margin-top: 7%;
+        margin-bottom: 5%;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .slider {
+        -webkit-appearance: none;
+        width: 55%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        margin-top: 5%;
+        cursor:pointer;
+    }
+    .score {
+        margin-top: 40px;
+        font-weight: bold;
+    }
+    .comment {
+        width: 80%;
+        height: 150px;
+        margin-top: 5%;
+        margin-bottom: 7%;
+        resize: none;
+        border-radius: 3px;
+
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .btn1 {
+        width: 120px;
+        height: 50px;
+        border: none;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor:pointer;
+    }
+    .btn2 {
+        width: 120px;
+        height: 50px;
+        border: none;
+        background-color: dodgerblue;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor:pointer;
+    }
+    .exist {
+        width: 550px;
+        height: 10%;
+        background-color: white;
+        margin: auto;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        padding-top: 50px;
+        margin-top: 20px;
+
+    }
+</style>
 <body>
+
     <div class="modal" id="modal">
         <div class="modal_back">
-             {% if movie is None %}
+            {% if movie is None %}
                 <div class="exist">
                     <span> 이미 후기를 작성한 영화입니다.</span>
                 </div>
@@ -116,7 +121,7 @@
                     내 평점 등록
                 </div>
                 <form action="/detail/post/{{ movie.id }}/" method="POST">
-                {% csrf_token %}
+                    {% csrf_token %}
                      <div class="modal_component">
                         <div class="title">
                             {{ movie.title }}
@@ -124,22 +129,22 @@
                         <div>
                             <div class="slidecontainer" >
                                 <span>평점을 매겨주세요.</span><br>
-                                <input type="range" min="1" max="5" step="0.1" value="3" class="slider" id="myRange" name="myRange" oninput="document.getElementById('score').innerHTML=this.value;"><br>
+                                <input required type="range" min="1" max="5" step="0.1" value="3" class="slider" id="myRange" name="myRange" oninput="document.getElementById('score').innerHTML=this.value;" ><br>
                                 <span id="score" class="score"></span>
                             </div>
                         </div>
                         <div>
-                            <textarea name="comment" id="comment" class="comment" placeholder="감상평을 남겨주세요."></textarea>
+                            <textarea required name="comment" id="comment" class="comment" placeholder="감상평을 남겨주세요."></textarea>
                         </div>
                         <div>
-                            <button class="btn1" id="btn1">취소</button> <button class="btn2 btn2" type="submit">작성</button>
+                            <button onclick="location.href='/detail/{{ movie.id }}'" class="btn1" id="btn1">취소</button> <button class="btn2" type="submit">작성</button>
                         </div>
                     </div>
                 </form>
             </div>
-            {% endif %}
         </div>
     </div>
-</body>
+{% endif %}
 
+</body>
 </html>
