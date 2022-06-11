@@ -92,6 +92,11 @@
         border-radius: 3px;
         cursor:pointer;
     }
+    .msg {
+        color: red;
+        font-size: large;
+
+    }
 
 </style>
 <body>
@@ -117,6 +122,12 @@
                         <div>
                             <textarea required name="comment" id="comment" class="comment" placeholder="">{{ article.content }}</textarea>
                         </div>
+                         <!-- 에러 메세지를 보여줄 수 있도록 해주는 조건문 -->
+                         {% if error %}
+                             <div class="alert alert-danger msg" role="alert">
+                                 {{ error }}
+                             </div>
+                         {% endif %}
                         <div>
                             <button type="button" onclick="location.href='/mypage'" class="btn1" id="btn1">취소</button> <button class="btn2" type="submit">작성</button>
                         </div>
