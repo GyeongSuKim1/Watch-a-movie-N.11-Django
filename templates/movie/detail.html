@@ -49,12 +49,12 @@
             {% if movies and recommend %}
             {% for movie in recommend %}
                 <form action="/detail/{{ movie.id }}/" method="get">
-                <div class="col">
-                    <div class="card h-100">
+                <div class="col side">
+                    <div class="card h-100 width">
                         <a href="/detail/{{ movie.id }}/">
-                        <img src="{{ movie.image }}" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="title">{{ movie.title }}</h5>
+                        <img src="{{ movie.image }}" class="card-img-top hover">
+                        <div class="card-body re">
+                            <h5 class="little-title">{{ movie.title }}</h5>
                         </div>
                         </a>
                     </div>
@@ -89,13 +89,40 @@
     .recommends{
         overflow: scroll;
         margin: auto;
+        padding-top: 20px;
     }
     .recommend {
-        width: 1600px;
-        float: left;
+        padding: 10px;
     }
     a {
         text-decoration: none;
         color: black;
     }
+    .width {
+        width: 120px;
+    }
+    .hover {
+        height: 180px;
+    }
+    .hover:hover {
+        opacity: 3;
+        transform:
+            scale(1.5)
+            translateY(10px)
+    }
+    .side {
+        padding-right: 30px;
+    }
+    .re {
+        margin: 0 auto;
+        -webkit-line-clamp: 3;
+        padding: 0;
+    }
+    .little-title {
+        font-size: 14px;
+        text-align: center;
+    }
+
+
 {% endblock %}
+

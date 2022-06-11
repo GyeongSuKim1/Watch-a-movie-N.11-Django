@@ -10,7 +10,7 @@
                     <div class="col">
                         <div class="card h-100">
                             <a href="/detail/{{ movie.id }}/">
-                            <img src="{{ movie.image }}" class="card-img-top">
+                            <img src="{{ movie.image }}" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="title">{{ movie.title }}</h5>
                                 <p class="tag">{{ movie.tags }}</p>
@@ -35,6 +35,14 @@
     a {
         text-decoration: none;
         color: black;
+    }
+    .tag {
+        font-size: 12px;
+        -webkit-line-clamp: 3;
+    }
+    .title {
+        font-weight: 700;
+        text-align: center;
     }
 {% endblock %}
 
