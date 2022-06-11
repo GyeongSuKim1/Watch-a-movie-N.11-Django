@@ -81,11 +81,35 @@ def update(request, id):
         user = request.user
 
         article = PostModel.objects.get(id=id)
-        article.score = request.POST.get('myRange')
-        article.content = request.POST.get('comment')
-        article.created_at = datetime.now()
-        article.save()
+        movie = Movie.objects.get(id=article.title_id)
 
+        if request.POST.get('myRange') == '1' or request.POST.get('myRange') == '2' or request.POST.get('myRange') == '3' or request.POST.get('myRange') == '4' or request.POST.get('myRange') == '5':
+            range_1 = request.POST.get('myRange') + '.0'
+        else:
+            range_1 = request.POST.get('myRange')
+        comment_1 = request.POST.get('comment')
+
+        if str(article.score) == range_1 and article.content == comment_1:
+            print(1)
+            return render(request, 'post/edit.html', {'error': '내용 수정이 완료되지 않았습니다.', 'article': article, 'movie': movie})
+
+        elif str(article.score) == range_1 and article.content != comment_1:
+            print(2)
+            article.content = comment_1
+            article.created_at = datetime.now()
+
+        elif str(article.score) != range_1 and article.content == comment_1:
+            print(3)
+            article.score = range_1
+            article.created_at = datetime.now()
+
+        elif str(article.score) != range_1 and article.content != comment_1:
+            print(4)
+            article.score = range_1
+            article.content = comment_1
+            article.created_at = datetime.now()
+
+        article.save()
         all_post = PostModel.objects.filter(author_id=user.id).order_by('-created_at')
 
         return render(request, 'post/mypage.html', {'username': user, 'posts': all_post})
