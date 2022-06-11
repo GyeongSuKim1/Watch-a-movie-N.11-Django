@@ -1,0 +1,16 @@
+asgiref @ file:///home/conda/feedstock_root/build_artifacts/asgiref_1652752042988/work
+Cython @ file:///Users/runner/miniforge3/conda-bld/cython_1652809521788/work
+Django @ file:///home/conda/feedstock_root/build_artifacts/django_1638897748254/work
+joblib==1.1.0
+numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1653325964689/work
+pandas==1.4.2
+python-dateutil==2.8.2
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1647961439546/work
+scikit-learn==1.1.1
+scikit-surprise==1.1.1
+scipy==1.8.1
+six==1.16.0
+sklearn==0.0
+sqlparse @ file:///home/conda/feedstock_root/build_artifacts/sqlparse_1631317292236/work
+threadpoolctl==3.1.0
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1650370875435/work
