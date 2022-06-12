@@ -1,17 +1,58 @@
 {% extends 'base.html' %}
 
 
+
 {% block content %}
-    <form action="/taste/"  method="POST">
+<h1 class="title">관심 있는 영화를 골라주세요</h1>
+{% if error %}
+    <h1 class="title">영화를 선택해 주세요.</h1>
+{% endif %}
+    <form action="/taste/" method="POST">
     {% csrf_token %}
-        {% if movies %}
-            {% for movie in movies %}
-                <div>
-                    <input type="checkbox" name="title" value="{{ movie.id }}">
-                    <label for="title">{{ movie.title }}</label>
-                </div>
-            {% endfor %}
-        {% endif %}
-        <button type="submit">OK</button>
+        <div class="button">
+            <button class="refresh">🔄</button>
+            <button type="submit" name="ok">OK</button>
+        </div>
+        <div class="taste_list">
+            {% if movies %}
+                {% for movie in movies %}
+                    <div  class="row movies">
+                        <input type="checkbox" name="title" value="{{ movie.id }}">
+                        <label for="title" class="movie-title" style="font-size: 800;">{{ movie.title }}</label>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
     </form>
+{% endblock %}
+
+{% block style %}
+    .title {
+        text-align: center;
+        margin: 40px 0px;
+    }
+    .button{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .taste_list {
+        margin: auto;
+        max-width: 1200px;
+    }
+    .movies {
+        width: 350px;
+        height: auto;
+        display: flex;
+{#        flex-wrap: wrap;#}
+        float: left;
+        margin: 20px;
+        padding: 5px;
+        border: 1px solid;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: normal;
+    }
+    .movie-title {
+        text-align: center;
+    }
 {% endblock %}

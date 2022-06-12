@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-from movie.models import Movie, Taste
+from movie.models import Movie, Taste, Tag
+from django.http.response import JsonResponse
+from django.db.models import Max
 
 
 movies = pd.read_csv('recommend/movies.csv')
@@ -26,24 +28,32 @@ def item_based_filtering(movie):
 def taste(request):
     if request.method == 'POST':
         user = request.user
-        print(f'user:{user}')
+        movies = []
+        print(f'request.POST.items(): {request.POST.items}')
+
+        choice = request.POST.get('title')
+        print()
+
+        movie_list = []
+        tags = Tag.objects.all()
+        for tag in tags:
+            max_score = tag.movies.all().aggregate(score=Max('score'))
+            movie = tag.movies.filter(score=max_score["score"])[0]
+            movie_list.append(movie)  # 태그별 가장 높은 평점의 영화들을 리스트함
 
         for key, value in request.POST.items():
             if key == "csrfmiddlewaretoken":
                 continue
-            else:
-                Taste.objects.create(
-                    user=user,
-                    movie_id=value,
-                )
-                movies = []
 
-                movie = Movie.objects.get(id=value)
-                print(f'당신이 고른 선호하는 영화: {movie.title}')
+            elif choice is None:
+                return render(request, 'recommend/taste.html', {'error':'에러메세지','movies': movie_list})
+
+            elif choice is not None:
                 a = item_based_filtering(movie.title)
                 for i in a:
                     movie = Movie.objects.get(title=i)
                     movie.tags = ", ".join(list(movie.tag.all().values_list('tag', flat=True)))
                     movies.append(movie)
-                print(f'추천된 영화는 : {movies, type(movies)}')
-            return render(request, 'movie/home.html', {'movies': movies})
+                    Taste.objects.create(user=user, movie_id=choice)
+                return render(request, 'movie/home.html', {'movies': movies})
+
