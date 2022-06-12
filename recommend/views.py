@@ -18,7 +18,7 @@ item_based_collab = pd.DataFrame(item_based_collab, index=user_title.index, colu
 
 
 def item_based_filtering(movie):
-    movie_list = item_based_collab[movie].sort_values(ascending=False)[1:20]
+    movie_list = item_based_collab[movie].sort_values(ascending=False)[1:21]
     print(f'아이템 협업 필터링 결과값 : {movie_list.index}')
     return movie_list.index
 
