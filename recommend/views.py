@@ -19,7 +19,7 @@ item_based_collab = pd.DataFrame(item_based_collab, index=user_title.index, colu
 
 def item_based_filtering(movie):
     movie_list = item_based_collab[movie].sort_values(ascending=False)[1:20]
-    print(f'movie_list : {movie_list.index}')
+    print(f'아이템 협업 필터링 결과값 : {movie_list.index}')
     return movie_list.index
 
 
@@ -39,11 +39,11 @@ def taste(request):
                 movies = []
 
                 movie = Movie.objects.get(id=value)
-                print(movie.title)
+                print(f'당신이 고른 선호하는 영화: {movie.title}')
                 a = item_based_filtering(movie.title)
                 for i in a:
                     movie = Movie.objects.get(title=i)
                     movie.tags = ", ".join(list(movie.tag.all().values_list('tag', flat=True)))
                     movies.append(movie)
-                print(movies, type(movies))
+                print(f'추천된 영화는 : {movies, type(movies)}')
             return render(request, 'movie/home.html', {'movies': movies})
