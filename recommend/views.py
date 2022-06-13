@@ -29,13 +29,10 @@ def taste(request):
     if request.method == 'POST':
         user = request.user
         movies = []
-        print(f'request.POST.items(): {request.POST.items}')
-
         choice = request.POST.get('title')
-        print()
-
         movie_list = []
         tags = Tag.objects.all()
+
         for tag in tags:
             max_score = tag.movies.all().aggregate(score=Max('score'))
             movie = tag.movies.filter(score=max_score["score"])[0]
@@ -49,7 +46,7 @@ def taste(request):
                 return render(request, 'recommend/taste.html', {'error':'에러메세지','movies': movie_list})
 
             elif choice is not None:
-                a = item_based_filtering(movie.title)
+                a = item_based_filtering(value)
                 for i in a:
                     movie = Movie.objects.get(title=i)
                     movie.tags = ", ".join(list(movie.tag.all().values_list('tag', flat=True)))
