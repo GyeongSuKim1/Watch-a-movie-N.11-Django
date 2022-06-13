@@ -10,7 +10,7 @@
     <form action="/taste/" method="POST">
     {% csrf_token %}
         <div class="button">
-            <button class="refresh">🔄</button>
+            <button type="button" class="refresh" onclick="location.href='/taste'">🔄</button>
             <button type="submit" name="ok">OK</button>
         </div>
         <div class="taste_list">
