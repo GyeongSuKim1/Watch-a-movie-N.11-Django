@@ -41,6 +41,18 @@ def detail(request, id):
 
     elif request.method == 'POST':
         return render(request, 'post/post.html')
+
+
+#검색 기능
+def search(request):
+    if request.method == 'POST':
+        context = dict()
+        input = request.POST.get("search", "")
+
+        movies = Movie.objects.filter(title__icontains=input)
+        context['movies'] = movies
+        print(context)
+        return render(request, 'movie/search.html', context)
     
 
 

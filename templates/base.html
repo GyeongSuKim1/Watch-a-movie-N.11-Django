@@ -19,6 +19,10 @@
 			.navbar {
 					z-index: 3;
 			}
+            .form-control {
+                max-width: 100%;
+                height: 40px;
+            }
 
 			{% block style %}
 
@@ -27,28 +31,32 @@
 	</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="container">
-		<a class="navbar-brand" href="/">Watch a movie N.11</a>
-
-		<form class="form-inline my-2 my-lg-0">
-			{% if not user.is_authenticated %}
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="/sign-in"> 로그인 <span class="sr-only"></span></a>
-					</li>
-				</ul>
-			{% else %}
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="/mypage/"> My Page </a>
-						<a class="nav-link" href="/logout/"> 로그아웃 </a>
-					</li>
-				</ul>
-			{% endif %}
-		</form>
-	</div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Watch a movie N.11</a>
+            <form class="d-flex" role="search" action="/search/" method="POST">
+              {% csrf_token %}
+              <input class="form-control me-2" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0">
+                {% if not user.is_authenticated %}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/sign-in"> 로그인 <span class="sr-only"></span></a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/mypage/"> My Page </a>
+                            <a class="nav-link" href="/logout/"> 로그아웃 </a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </form>
+        </div>
+    </nav>
 
 {% block content %}
 
