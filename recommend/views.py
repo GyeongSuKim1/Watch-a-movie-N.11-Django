@@ -31,13 +31,14 @@ def taste(request):
         movies = []
         choice = request.POST.get('title')
         movie_list = []
-        tags = Tag.objects.all()
 
+        tags = Tag.objects.all()
         for tag in tags:
             max_score = tag.movies.all().aggregate(score=Max('score'))
             movie = tag.movies.filter(score=max_score["score"])[0]
             movie_list.append(movie)  # 태그별 가장 높은 평점의 영화들을 리스트함
 
+        print(request.POST)
         for key, value in request.POST.items():
             if key == "csrfmiddlewaretoken":
                 continue
@@ -46,9 +47,12 @@ def taste(request):
                 return render(request, 'recommend/taste.html', {'error':'에러메세지','movies': movie_list})
 
             elif choice is not None:
-                a = item_based_filtering(value)
+                title = Movie.objects.get(id=value).title
+                a = item_based_filtering(title)
                 for i in a:
                     movie = Movie.objects.get(title=i)
+                    print('===========')
+                    print(movie)
                     movie.tags = ", ".join(list(movie.tag.all().values_list('tag', flat=True)))
                     movies.append(movie)
                     Taste.objects.create(user=user, movie_id=choice)
