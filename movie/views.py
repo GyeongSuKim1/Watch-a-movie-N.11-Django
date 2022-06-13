@@ -58,18 +58,13 @@ def search(request):
 # 화면 상단 tag값 나오는 nav 바
 def tagging(request):
     if request.method == 'POST':
-        for key, value in request.POST.items():
-            if key == "csrfmiddlewaretoken":
-                continue
+        tag = request.POST.get('tag')
 
-            elif key == "tag":
-                tag = Tag.objects.get(tag=value)
-                print(tag)
-                max_score = tag.movies.filter(tag=tag.id)
+        tag = Tag.objects.get(tag=tag)
+        max_score = tag.movies.filter(tag=tag.id)
 
-        return render(request, 'movie/home.html', {'movies': max_score})
+        return render(request, 'movie/home.html', {'movies': max_score, 'tag': tag})
     elif request.method == 'GET':
-        print(2, request.GET)
         return render(request, 'movie/home.html')
 
 
