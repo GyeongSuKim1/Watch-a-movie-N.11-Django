@@ -54,3 +54,6 @@ def taste(request):
                     Taste.objects.create(user=user, movie_id=choice)
                 return render(request, 'movie/home.html', {'movies': movies})
 
+    elif request.method == 'GET':
+        movie = Movie.objects.filter(score__gt=3.5).order_by('?')[:20]
+        return render(request, 'recommend/taste.html', {'movies': movie})
