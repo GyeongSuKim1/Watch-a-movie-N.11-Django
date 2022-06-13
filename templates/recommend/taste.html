@@ -10,13 +10,14 @@
     <form action="/taste/" method="POST">
     {% csrf_token %}
         <div class="button">
-            <button type="button" class="refresh" onclick="location.href='/taste'">🔄</button>
+            <button type="button" class="refresh" onclick="location.href='/refresh'">🔄</button>
             <button type="submit">OK</button>
         </div>
         <div class="taste_list">
             {% if movies %}
                 {% for movie in movies %}
                     <div  class="row movies">
+                        <img src="{{ movie.image }}" alt="" class="card-img-top">
                         <input type="checkbox" name="title" value="{{ movie.id }}">
                         <label for="title" class="movie-title" style="font-size: 800;">{{ movie.title }}</label>
                     </div>
@@ -47,8 +48,6 @@
         float: left;
         margin: 20px;
         padding: 5px;
-        border: 1px solid;
-        border-radius: 50px;
         justify-content: center;
         align-items: normal;
     }
