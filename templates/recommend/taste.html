@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 
-
 {% block content %}
 	<h1 class="title">관심 있는 영화를 골라주세요</h1>
 	{% if error %}
@@ -13,22 +12,21 @@
 			<button type="button" class="refresh" onclick="location.href='/refresh'"> 🔄</button>
 			<button type="submit" class="submit"> OK</button>
 		</div>
-		<div class="taste_list">
 
-			{% if movies %}
+		<div class="taste_list">
+            {% if movies %}
 				<div class="movies-card">
-					{% for movie in movies %}
-						<div class="movies">
-							<input type="checkbox" name="title" value="{{ movie.id }}" id="img_checkbox_{{ movie.id }}">
-							<label for="img_checkbox_{{ movie.id }}">
-							<span>
-						<img src="{{ movie.image }}" alt="" class="card-img-top">
-{#						<input type="checkbox" name="title" value="{{ movie.id }}" id="img_checkbox">#}
-					</span>
-								<label for="title" class="movie-title">{{ movie.title }}</label>
-							</label>
-						</div>
-					{% endfor %}
+				{% for movie in movies %}
+					<div class="movies">
+						<input type="checkbox" name="title" value="{{ movie.id }}" id="img_checkbox_{{ movie.id }}">
+						<label for="img_checkbox_{{ movie.id }}">
+                            <span>
+                                <img src="{{ movie.image }}" alt="" class="card-img-top">
+                            </span>
+							<label for="title" class="movie-title">{{ movie.title }}</label>
+						</label>
+					</div>
+				{% endfor %}
 				</div>
 			{% endif %}
 		</div>
@@ -37,58 +35,60 @@
 
 {% block style %}
 	.title {
-	text-align: center;
-	margin: 40px 0px;
+        text-align: center;
+        margin: 40px 0px;
 	}
 
 	.button{
-	text-align: center;
-	margin-bottom: 40px;
+        text-align: center;
 	}
 
-	.refresh, .submit {
-	border: 0;
-	outline: 0;
-	font-size: 50px;
-	background: transparent;
+    .refresh, .submit {
+        border: 0;
+        outline: 0;
+        font-size: 50px;
+        background: transparent;
 	}
 
 	.taste_list {
-	margin: auto;
-	max-width: 1200px;
+        margin: auto;
+        max-width: 1600px;
 	}
 
 	.movies-card {
-	display: grid;
-	align-items: center;
-	text-align: center;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 15px;
+	    display: grid;
+        align-items: center;
+        text-align: center;
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+        margin: 50px 120px;
+        gap: 40px;
 	}
 
 	.movies {
-	flex: 1;
-	width: 250px;
-	height: auto;
-	margin: 20px;
-	padding: 5px;
+        flex: 1;
+        width: 250px;
+        height: auto;
+        padding: 5px;
 	}
 
 	.movie-title {
-	text-align: center;
-	padding-top: 5%;
-	font-weight: bold;
+        text-align: center;
+        padding-top: 5%;
+        font-weight: bold;
 	}
 
 	input[type="checkbox"]{display:none}
+
 	input[type="checkbox"] + label
-	span{
-	display:inline-block;
-	vertical-align:middle;
+
+	span {
+        display:inline-block;
+        vertical-align:middle;
 	}
 
 	input[type="checkbox"]:checked + label span{
-	border-radius: 1px;
-	box-shadow: 0px 0px 0px 8px rgba(255,0,0,0.7);
+        border-radius: 1px;
+        box-shadow: 0px 0px 0px 8px rgba(255,0,0,0.7);
 	}
 {% endblock %}
