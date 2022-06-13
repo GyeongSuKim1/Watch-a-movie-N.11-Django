@@ -3,55 +3,84 @@
 
 
 {% block content %}
-<h1 class="title">관심 있는 영화를 골라주세요</h1>
-{% if error %}
-    <h1 class="title">영화를 선택해 주세요.</h1>
-{% endif %}
-    <form action="/taste/" method="POST">
-    {% csrf_token %}
-        <div class="button">
-            <button type="button" class="refresh" onclick="location.href='/refresh'">🔄</button>
-            <button type="submit">OK</button>
-        </div>
-        <div class="taste_list">
-            {% if movies %}
-                {% for movie in movies %}
-                    <div  class="row movies">
-                        <img src="{{ movie.image }}" alt="" class="card-img-top">
-                        <input type="checkbox" name="title" value="{{ movie.id }}">
-                        <label for="title" class="movie-title" style="font-size: 800;">{{ movie.title }}</label>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
-    </form>
+	<h1 class="title">관심 있는 영화를 골라주세요</h1>
+	{% if error %}
+		<h1 class="title">영화를 선택해 주세요.</h1>
+	{% endif %}
+	<form action="/taste/" method="POST">
+		{% csrf_token %}
+		<div class="button">
+			<button type="button" class="refresh" onclick="location.href='/refresh'">🔄</button>
+			<button type="submit">OK</button>
+		</div>
+		<div class="taste_list">
+
+
+			{% if movies %}
+				<div class="movies-card">
+				{% for movie in movies %}
+					<div class="movies">
+						<input type="checkbox" name="title" value="{{ movie.id }}" id="img_checkbox_{{ movie.id }}">
+						<label for="img_checkbox_{{ movie.id }}">
+							<span>
+						<img src="{{ movie.image }}" alt="" class="card-img-top">
+{#						<input type="checkbox" name="title" value="{{ movie.id }}" id="img_checkbox">#}
+					</span>
+							<label for="title" class="movie-title">{{ movie.title }}</label>
+						</label>
+					</div>
+				{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+	</form>
 {% endblock %}
 
 {% block style %}
-    .title {
-        text-align: center;
-        margin: 40px 0px;
-    }
-    .button{
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    .taste_list {
-        margin: auto;
-        max-width: 1200px;
-    }
-    .movies {
-        width: 350px;
-        height: auto;
-        display: flex;
-{#        flex-wrap: wrap;#}
-        float: left;
-        margin: 20px;
-        padding: 5px;
-        justify-content: center;
-        align-items: normal;
-    }
-    .movie-title {
-        text-align: center;
-    }
+	.title {
+	text-align: center;
+	margin: 40px 0px;
+	}
+	.button{
+	text-align: center;
+	margin-bottom: 40px;
+	}
+	.taste_list {
+	margin: auto;
+	max-width: 1200px;
+	}
+
+	.movies-card {
+	    display: grid;
+    align-items: center;
+    text-align: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+	}
+
+	.movies {
+	flex: 1;
+	width: 250px;
+	height: auto;
+	margin: 20px;
+	padding: 5px;
+	}
+
+	.movie-title {
+	text-align: center;
+	padding-top: 5%;
+	font-weight: bold;
+	}
+
+	input[type="checkbox"]{display:none}
+	input[type="checkbox"] + label
+	span{
+	display:inline-block;
+	vertical-align:middle;
+	}
+
+	input[type="checkbox"]:checked + label span{
+	border-radius: 1px;
+  box-shadow: 0px 0px 0px 8px rgba(255,0,0,0.7);
+	}
 {% endblock %}
