@@ -26,38 +26,45 @@ def item_based_filtering(movie):
 
 
 def taste(request):
-    if request.method == 'POST':
-        user = request.user
-        movies = []
-        choice = request.POST.get('title')
-        movie_list = []
+    print(f'request.GET{request.GET}')
+    print(f'request.POST{request.POST}')
+    user = request.user
+    choice = request.POST.get('title')
+    print(f'{user}의 choice: {choice}')
+    scores = []
+    tags = Tag.objects.all()
+    for tag in tags:
+        max_score = tag.movies.all().aggregate(score=Max('score'))
+        movie = tag.movies.filter(score=max_score["score"])[0]
+        scores.append(movie)  # 태그별 가장 높은 평점의 영화들을 리스트함
+        max_score = set(scores)
 
-        tags = Tag.objects.all()
-        for tag in tags:
-            max_score = tag.movies.all().aggregate(score=Max('score'))
-            movie = tag.movies.filter(score=max_score["score"])[0]
-            movie_list.append(movie)  # 태그별 가장 높은 평점의 영화들을 리스트함
-
-        print(request.POST)
+    if request.method == 'GET':
+        user_taste = Taste.objects.all().values_list('user_id', flat=True)
+        if request.user.id in user_taste:
+            return redirect('/')
+        else:
+            return render(request, 'recommend/taste.html',{'movies':max_score})
+    elif request.method == 'POST':
         for key, value in request.POST.items():
             if key == "csrfmiddlewaretoken":
                 continue
-
-            elif choice is None:
-                return render(request, 'recommend/taste.html', {'error':'에러메세지','movies': movie_list})
-
-            elif choice is not None:
+            elif len(choice) == 1:
+                print('if')
+                
+            elif key == "title":
                 title = Movie.objects.get(id=value).title
                 a = item_based_filtering(title)
                 for i in a:
-                    movie = Movie.objects.get(title=i)
-                    print('===========')
-                    print(movie)
-                    movie.tags = ", ".join(list(movie.tag.all().values_list('tag', flat=True)))
-                    movies.append(movie)
-                    Taste.objects.create(user=user, movie_id=choice)
-                return render(request, 'movie/home.html', {'movies': movies})
+                    movies = Movie.objects.get(title=i)
+                    movies.tags = ", ".join(list(movies.tag.all().values_list('tag', flat=True)))
+                    max_score.add(movies)
+                print(max_score)
 
-    elif request.method == 'GET':
-        movie = Movie.objects.filter(score__gt=3.5).order_by('?')[:20]
-        return render(request, 'recommend/taste.html', {'movies': movie})
+            Taste.objects.create(user=user, movie_id=choice)
+            return render(request, 'movie/home.html', {'movies': max_score})
+        return render(request, 'recommend/taste.html', {'error': '에러메세지', 'movies': max_score})
+
+def refresh(request):
+    movie = Movie.objects.filter(score__gt=3.5).order_by('?')[:20]
+    return render(request, 'recommend/taste.html', {'movies': movie})

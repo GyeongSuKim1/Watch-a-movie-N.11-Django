@@ -54,20 +54,7 @@ def sign_in_view(request):
 		me = auth.authenticate(request, username=username, password=password)  # 사용자 불러오기
 		if me is not None:  # 저장된 사용자의 패스워드와 입력받은 패스워드 비교
 			auth.login(request, me)
-
-			movie_list = []
-			tags = Tag.objects.all()
-			for tag in tags:
-				max_score = tag.movies.all().aggregate(score=Max('score'))
-				movie = tag.movies.filter(score=max_score["score"])[0]
-				movie_list.append(movie)		# 태그별 가장 높은 평점의 영화들을 리스트함
-
-			user_taste = Taste.objects.all().values_list('user_id', flat=True)
-			if request.user.id in user_taste:		# 선호하는 영화 정보가 있는 사용자라면, 랜덤 평점 3 이상 영화 랜덤으로 보여주기
-				movies = Movie.objects.filter(score__gt=2.9).order_by('?')[:20]
-				return render(request, 'movie/home.html', {'movies': movies})
-			else:		# 선호하는 영화를 고른 적 없는 사용자라면, 체크 박스 화면(선호 영화(장르 1개 당 평점 높은 1개의 영화) 선택)
-				return render(request, 'recommend/taste.html', {'movies': movie_list})
+			return redirect('/taste/') # 로그인 성공시 taste 페이지로 가서 선호 영화 선택 or 메인 홈페이지 이동
 		else:		# 로그인 실패하면 다시 로그인 페이지를 보여주기
 			return render(request, 'user/signin.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
 
