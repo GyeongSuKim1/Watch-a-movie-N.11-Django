@@ -3,12 +3,12 @@
 {% block content %}
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" id="home" href="http://127.0.0.1:8000/">All</a>
+            <a class="nav-link" href="http://127.0.0.1:8000/">All</a>
         </li>
         <li class="nav-item">
-            <form class="nav-link" id="tag1" action="/tagging/" method="POST">
+            <form class="nav-link" action="/tagging/" method="POST">
                 {% csrf_token %}
-                <input type="hidden" name="tag" value="Adventure" onclick="clickTag()"/>
+                <input type="hidden" name="tag" value="Adventure"/>
                 <button type="submit" style="border: none; background-color: transparent;">Adventure</button>
             </form>
         </li>
@@ -183,3 +183,14 @@
     }
 {% endblock %}}
 
+{% block script %}
+    var aTags = document.getElementsByName('tag')
+    {#    백앤드에서 보내준 tag 값#}
+    var searchText = "{{ tag }}";
+
+    for (var i = 0; i < aTags.length; i++) {
+        if (aTags[i].defaultValue == searchText) {
+            aTags[i].parentElement.classList.toggle('active')
+        }
+    }
+{% endblock %}
