@@ -11,32 +11,38 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
 					integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 					crossorigin="anonymous"></script>
-	<style>
-      .active {
-          display: flex;
-      }
+<style>
+    .active {
+        display: flex;
+    }
 
-			.navbar {
-					z-index: 3;
-			}
-            .form-control {
-                max-width: 100%;
-                height: 40px;
-            }
+    .navbar {
+        z-index: 3;
+    }
 
-			{% block style %}
+    .search {
+        display: flex;
+        align-items: center;
+        height: 40px;
+    }
 
-			{% endblock %}
+    .form-control {
+        max-width: 100%;
+        height: 40px;
+    }
 
-	</style>
+{% block style %}
+
+{% endblock %}
+</style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="/">Watch a movie N.11</a>
-            <form class="d-flex" role="search" action="/search/" method="POST">
+           <form class="d-flex search" role="search" action="/search/" method="POST">
               {% csrf_token %}
-              <input class="form-control me-2" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
+              <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <form class="form-inline my-2 my-lg-0">
