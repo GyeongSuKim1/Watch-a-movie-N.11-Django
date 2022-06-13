@@ -68,6 +68,11 @@
 # API 명세서
 ![API](https://user-images.githubusercontent.com/89643366/173366787-77b7a41c-9dea-4811-a23e-5989fd47d8a8.png)
 
+# DATABASE
+### 💚 ERDCloud 링크 : https://www.erdcloud.com/d/mb5GM8DCtF2wpJfp4
+![Untitled](https://user-images.githubusercontent.com/89643366/173367811-6305aea3-781b-4009-bf73-98b52ecb29f4.png)
+
+
 
 # 컨벤션
 
