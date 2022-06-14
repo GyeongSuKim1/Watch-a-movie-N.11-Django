@@ -15,7 +15,8 @@ def home(request):
         return render(request, 'movie/home.html', {'movies': scores, 'tag_all': tag_all})
 
     elif request.method == 'POST':
-        return render(request, 'movie/detail.html')
+        tag_all = Tag.objects.all()
+        return render(request, 'movie/detail.html', {'tag_all': tag_all})
 
 
 def detail(request, id):
