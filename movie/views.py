@@ -9,7 +9,10 @@ def home(request):
         for movie in scores:
             movie.tags = ", " .join(list(movie.tag.all().values_list('tag', flat=True)))
         # 영화들을 for 반복문을 돌려주고, 변수를 이용해 movie.tag(Movie.tag)의 value값을 찾아 movie에 담고 랜더링해준다.
-        return render(request, 'movie/home.html', {'movies': scores})
+        
+        tag_all = Tag.objects.all()
+
+        return render(request, 'movie/home.html', {'movies': scores, 'tag_all': tag_all})
 
     elif request.method == 'POST':
         return render(request, 'movie/detail.html')
@@ -17,6 +20,7 @@ def home(request):
 
 def detail(request, id):
     if request.method == 'GET':
+        tag_all = Tag.objects.all()
         selected_movie = Movie.objects.get(id=id)
         selected_movie.tags = ", ".join(list(selected_movie.tag.all().values_list('tag', flat=True)))
         # (상단에 있는) 선택 영화의 정보와 태그
@@ -34,6 +38,7 @@ def detail(request, id):
                 'selected' : selected_movie,
                 'movies' : movie_list,
                 'recommend' : recommend,
+                'tag_all': tag_all,
             }
             return render(request, 'movie/detail.html', content)
         else:
@@ -56,16 +61,14 @@ def search(request):
 
 
 # 화면 상단 tag값 나오는 nav 바
-def tagging(request):
-    if request.method == 'POST':
-        tag = request.POST.get('tag')
+def tagging(request, name):
+    if request.method == 'GET':
+        tag_all = Tag.objects.all()
 
-        tag = Tag.objects.get(tag=tag)
+        tag = Tag.objects.get(tag=name)
         max_score = tag.movies.filter(tag=tag.id)
 
-        return render(request, 'movie/home.html', {'movies': max_score, 'tag': tag})
-    elif request.method == 'GET':
-        return render(request, 'movie/home.html')
+        return render(request, 'movie/home.html', {'movies': max_score,'tag_all': tag_all, 'tag': tag})
 
 
 
