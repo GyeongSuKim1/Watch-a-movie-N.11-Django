@@ -2,6 +2,16 @@
 
 
 {% block content %}
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" id="all" href="http://127.0.0.1:8000/">All</a>
+		</li>
+		{% for tag in tag_all %}
+			<li class="nav-item">
+				<a class="nav-link" id="{{ tag.id }}" href="/tag/{{ tag }}/">{{ tag }}</a>
+			</li>
+		{% endfor %}
+	</ul>
 	<h1 class="title">관심 있는 영화를 골라주세요</h1>
 	{% if error %}
 		<h1 class="title">영화를 선택해 주세요.</h1>
@@ -91,4 +101,20 @@
         border-radius: 1px;
         box-shadow: 0px 0px 0px 8px rgba(255,0,0,0.7);
 	}
+{% endblock %}
+
+{% block script %}
+    var aTags = document.getElementById('{{ tag.id }}')
+    var tag = aTags.innerText
+
+    var all = document.getElementById('all')
+    
+    var searchText = "{{ tag }}";
+
+    if (tag == searchText) {
+        aTags.classList.toggle('active')
+        all.classList.toggle('active')
+    } else {
+        all.classList.toggle('active')
+    }
 {% endblock %}
