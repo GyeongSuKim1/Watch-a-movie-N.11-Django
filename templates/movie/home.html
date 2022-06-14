@@ -3,141 +3,13 @@
 {% block content %}
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/">All</a>
+            <a class="nav-link active" id="all" href="http://127.0.0.1:8000/">All</a>
         </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Adventure"/>
-                <button type="submit" style="border: none; background-color: transparent;">Adventure</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Fantasy"/>
-                <button type="submit" style="border: none; background-color: transparent;">Fantasy</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Animation"/>
-                <button type="submit" style="border: none; background-color: transparent;">Animation</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Drama"/>
-                <button type="submit" style="border: none; background-color: transparent;">Drama</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Horror"/>
-                <button type="submit" style="border: none; background-color: transparent;">Horror</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Action"/>
-                <button type="submit" style="border: none; background-color: transparent;">Action</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Comedy"/>
-                <button type="submit" style="border: none; background-color: transparent;">Comedy</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="History"/>
-                <button type="submit" style="border: none; background-color: transparent;">History</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Western"/>
-                <button type="submit" style="border: none; background-color: transparent;">Western</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Thriller"/>
-                <button type="submit" style="border: none; background-color: transparent;">Thriller</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Crime"/>
-                <button type="submit" style="border: none; background-color: transparent;">Crime</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Documentary"/>
-                <button type="submit" style="border: none; background-color: transparent;">Documentary</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Science Fiction"/>
-                <button type="submit" style="border: none; background-color: transparent;">Science Fiction</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Mystery"/>
-                <button type="submit" style="border: none; background-color: transparent;">Mystery</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Music"/>
-                <button type="submit" style="border: none; background-color: transparent;">Music</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Romance"/>
-                <button type="submit" style="border: none; background-color: transparent;">Romance</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="Family"/>
-                <button type="submit" style="border: none; background-color: transparent;">Family</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="War"/>
-                <button type="submit" style="border: none; background-color: transparent;">War</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="nav-link" action="/tagging/" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="tag" value="TV Movie"/>
-                <button type="submit" style="border: none; background-color: transparent;">TV Movie</button>
-            </form>
-        </li>
+        {% for tag in tag_all %}
+            <li class="nav-item">
+                <a class="nav-link" id="{{ tag.id }}" href="/{{ tag }}/">{{ tag }}</a>
+            </li>
+        {% endfor %}
     </ul>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
@@ -181,16 +53,20 @@
         font-weight: 700;
         text-align: center;
     }
-{% endblock %}}
+{% endblock %}
 
 {% block script %}
-    var aTags = document.getElementsByName('tag')
-    {#    백앤드에서 보내준 tag 값#}
+    var aTags = document.getElementById('{{ tag.id }}')
+    var tag = aTags.innerText
+
+    var all = document.getElementById('all')
+    
     var searchText = "{{ tag }}";
 
-    for (var i = 0; i < aTags.length; i++) {
-        if (aTags[i].defaultValue == searchText) {
-            aTags[i].parentElement.classList.toggle('active')
-        }
+    if (tag == searchText) {
+        aTags.classList.toggle('active')
+        all.classList.toggle('active')
+    } else {
+        all.classList.toggle('active')
     }
 {% endblock %}
