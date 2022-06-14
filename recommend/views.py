@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from movie.models import Movie, Taste, Tag
-from django.http.response import JsonResponse
 from django.db.models import Max
 
 
@@ -49,9 +48,7 @@ def taste(request):
         for key, value in request.POST.items():
             if key == "csrfmiddlewaretoken":
                 continue
-            elif len(choice) == 1:
-                print('if')
-                
+            
             elif key == "title":
                 title = Movie.objects.get(id=value).title
                 a = item_based_filtering(title)
@@ -62,8 +59,8 @@ def taste(request):
                 print(max_score)
 
             Taste.objects.create(user=user, movie_id=choice)
-            return render(request, 'movie/home.html', {'movies': max_score})
-        return render(request, 'recommend/taste.html', {'error': '에러메세지', 'movies': max_score})
+            return render(request, 'movie/home.html', {'movies': max_score, 'tag_all': tags})
+        return render(request, 'recommend/taste.html', {'error': '에러메세지', 'movies': max_score, 'tag_all': tags})
 
 def refresh(request):
     movie = Movie.objects.filter(score__gt=3.5).order_by('?')[:20]
