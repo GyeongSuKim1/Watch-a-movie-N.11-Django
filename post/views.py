@@ -14,7 +14,7 @@ def show_post(request, id):
                 #사용자가 이미 작성했는지 확인
                 try:
                     existed_post = PostModel.objects.get(author_id=user.id, title_id=id)
-                    print(existed_post)
+                    # print(existed_post)
                     return render(request, 'post/post.html')
                 except:
                     movie = Movie.objects.get(id=id)
@@ -90,21 +90,21 @@ def update(request, id):
         comment_1 = request.POST.get('comment')
 
         if str(article.score) == range_1 and article.content == comment_1:
-            print(1)
+            # print(1)
             return render(request, 'post/edit.html', {'error': '내용 수정이 완료되지 않았습니다.', 'article': article, 'movie': movie})
 
         elif str(article.score) == range_1 and article.content != comment_1:
-            print(2)
+            # print(2)
             article.content = comment_1
             article.created_at = datetime.now()
 
         elif str(article.score) != range_1 and article.content == comment_1:
-            print(3)
+            # print(3)
             article.score = range_1
             article.created_at = datetime.now()
 
         elif str(article.score) != range_1 and article.content != comment_1:
-            print(4)
+            # print(4)
             article.score = range_1
             article.content = comment_1
             article.created_at = datetime.now()

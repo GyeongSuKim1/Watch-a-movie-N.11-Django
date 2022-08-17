@@ -57,7 +57,7 @@ def search(request):
 
         movies = Movie.objects.filter(title__icontains=input)
         context['movies'] = movies
-        print(context)
+        # print(context)
         return render(request, 'movie/search.html', context)
 
 

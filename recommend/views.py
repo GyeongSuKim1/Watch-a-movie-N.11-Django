@@ -20,16 +20,16 @@ item_based_collab = pd.DataFrame(item_based_collab, index=user_title.index, colu
 
 def item_based_filtering(movie):
     movie_list = item_based_collab[movie].sort_values(ascending=False)[1:21]
-    print(f'아이템 협업 필터링 결과값 : {movie_list.index}')
+    # print(f'아이템 협업 필터링 결과값 : {movie_list.index}')
     return movie_list.index
 
 
 def taste(request):
-    print(f'request.GET{request.GET}')
-    print(f'request.POST{request.POST}')
+    # print(f'request.GET{request.GET}')
+    # print(f'request.POST{request.POST}')
     user = request.user
     choice = request.POST.get('title')
-    print(f'{user}의 choice: {choice}')
+    # print(f'{user}의 choice: {choice}')
     scores = []
     tags = Tag.objects.all()
     for tag in tags:
@@ -56,7 +56,7 @@ def taste(request):
                     movies = Movie.objects.get(title=i)
                     movies.tags = ", ".join(list(movies.tag.all().values_list('tag', flat=True)))
                     max_score.add(movies)
-                print(max_score)
+                # print(max_score)
 
             Taste.objects.create(user=user, movie_id=choice)
             return render(request, 'movie/home.html', {'movies': max_score, 'tag_all': tags})
