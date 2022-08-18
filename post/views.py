@@ -8,13 +8,10 @@ from datetime import datetime
 def show_post(request, id):
     user = request.user
     if user:
-        if user.is_authenticated:      #로그인 검증
+        if user.is_authenticated:
             if request.method == 'GET':
-
-                #사용자가 이미 작성했는지 확인
                 try:
                     existed_post = PostModel.objects.get(author_id=user.id, title_id=id)
-                    # print(existed_post)
                     return render(request, 'post/post.html')
                 except:
                     movie = Movie.objects.get(id=id)
@@ -38,7 +35,7 @@ def show_post(request, id):
                 PM.save()
 
                 return redirect('/mypage')
-        else:                       # 로그인이 되어 있지 않다면
+        else:
             return redirect('/sign-in')
 
 
@@ -48,10 +45,10 @@ def show_list(request):
     if request.method == 'GET':
         user = request.user
 
-        if user.is_authenticated:      # 사용자가 로그인이 되어 있는지 확인하기
+        if user.is_authenticated:
             all_post = PostModel.objects.filter(author_id=user.id).order_by('-created_at')
             return render(request,'post/mypage.html', {'username': user, 'posts': all_post})
-        else:  # 로그인이 되어 있지 않다면
+        else:
             return redirect('/sign-in')
 
 
@@ -90,21 +87,17 @@ def update(request, id):
         comment_1 = request.POST.get('comment')
 
         if str(article.score) == range_1 and article.content == comment_1:
-            # print(1)
             return render(request, 'post/edit.html', {'error': '내용 수정이 완료되지 않았습니다.', 'article': article, 'movie': movie})
 
         elif str(article.score) == range_1 and article.content != comment_1:
-            # print(2)
             article.content = comment_1
             article.created_at = datetime.now()
 
         elif str(article.score) != range_1 and article.content == comment_1:
-            # print(3)
             article.score = range_1
             article.created_at = datetime.now()
 
         elif str(article.score) != range_1 and article.content != comment_1:
-            # print(4)
             article.score = range_1
             article.content = comment_1
             article.created_at = datetime.now()
@@ -113,3 +106,4 @@ def update(request, id):
         all_post = PostModel.objects.filter(author_id=user.id).order_by('-created_at')
 
         return render(request, 'post/mypage.html', {'username': user, 'posts': all_post})
+    
