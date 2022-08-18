@@ -5,6 +5,13 @@
 
 <br>
 
+# ⚙ 개발환경
+## back-end : <img src="https://img.shields.io/badge/python-3.9.10-3776AB?style=for-the-badge&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
+
+## front-end : <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+
+<br>
+
 ## 기능명세서
 
 - 상단바
@@ -61,7 +68,7 @@
     - 페이지별 리스트을 보여주는 것이 아닌 스크롤 방식으로 작성된 리뷰 리스트를 볼 수 있습니다.
 
 ## API 명세서
-![API](https://user-images.githubusercontent.com/89643366/173366787-77b7a41c-9dea-4811-a23e-5989fd47d8a8.png)
+![image](https://user-images.githubusercontent.com/104754104/185304655-bb3b9c48-bf96-4b65-9e87-e41cfb916ab0.png)
 
 ## DATABASE
 <img width="869" alt="스크린샷 2022-08-18 오후 2 32 37" src="https://user-images.githubusercontent.com/99387514/185301691-43d8d591-3e61-4a5f-bb02-96506e20f3f4.png">
@@ -82,16 +89,6 @@
 ## 컨벤션
 
 ### 💚 Git
-
-- 브랜치 관리 전략 참고사항
-    
-    ![image](https://user-images.githubusercontent.com/89643366/169194210-7acb7256-91e9-43cd-b02f-8fbf30b829d6.png)
-    
-    ```jsx
-    main(master) : 테스트 서버에서 테스트가 끝나고 운영서버로 배포 할 수 있는 브랜치
-    feature : 기능을 개발하는 브랜치
-    hotfix  : 운영중인 버전에서 발생한 버그를 수정 하는 브랜치
-    ```
     
 - 브랜치
     - user
@@ -109,6 +106,7 @@ Commit Type
 - Design : CSS 등 사용자 UI 디자인 변경
 - Style: 코드에 영향을 주지 않는 변경사항 /  코드 포맷 변경, 새미 콜론 누락, 코드 수정이 없는 경우
 - Comment : 필요한 주석 추가 및 변경
+- Add : 새로운 파일 추가
 - Refactor: 코드 리팩토링
 - Test: 테스트 코드/기능 추가
 - Rename : 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우
@@ -121,107 +119,4 @@ Subject
 - 72자를 넘기지 않고, 모든 커밋에 본문 내용을 작성할 필요는 없음.
 ```
 
-### 💚 코드
-
-- Frontend
-    
-    ```html
-    클래스명(- 사용) : form-control  
-    아이디명(카멜 케이스) : navbarNav
-    따옴표 : ""
-    요소의 속성(큰 따옴표) : type="button"
-    하이퍼링크 : 사용시 a 태그 포함
-    img 태그 : alt="" 꼭 표시
-    ```
-    
-- JavaScript
-    
-    <aside>
-    💡 Ex) mac book, num
-    
-    1. 파스칼 케이스 : MacBook, Num
-    
-    2. 카멜 케이스 : macBook, num
-    
-    3. 스네이크 케이스 : _macBook, _num
-    
-    4. 헝가리안 케이스 : isMacBook, isNum, strMacBook, strNum
-    
-    </aside>
-    
-    <aside>
-    💡 1. 파스칼 케이스
-    
-    </aside>
-    
-    ```jsx
-    // 클래스
-    class MyStudent {
-    		...
-    };
-    ```
-    
-    ```jsx
-    // 객체를 export 할 때
-    const MyObject = {
-    		...
-    };
-    export default MyObject;
-    ```
-    
-    <aside>
-    💡 2. 카멜 케이스
-    
-    </aside>
-    
-    ```jsx
-    // 변수와 상수
-    let num = 123;
-    let str = 'hello';
-    
-    // 함수
-    function myFunction() {
-    	...
-    }
-    
-    // 객체
-    const thisIsMyObject = {
-    	...
-    };
-    ```
-    
-- Python
-    
-    <aside>
-    💡 1. 일반 변수
-    
-    </aside>
-    
-    ```python
-    a = 'MacBook'
-    
-    # 스네이크 케이스
-    my_num = 3
-    ```
-    
-    <aside>
-    💡 2. 함수
-    
-    </aside>
-    
-    ```python
-    def get_user_info():
-      ...
-    ```
-    
-    <aside>
-    💡 3. 클래스
-    
-    </aside>
-    
-    ```python
-    # 첫 글자 대문자
-    class CatchFish():
-    	...
-    ```
     
