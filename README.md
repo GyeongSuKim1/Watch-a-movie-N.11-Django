@@ -64,7 +64,7 @@
 ![API](https://user-images.githubusercontent.com/89643366/173366787-77b7a41c-9dea-4811-a23e-5989fd47d8a8.png)
 
 ## DATABASE
-![Untitled](https://user-images.githubusercontent.com/89643366/173367811-6305aea3-781b-4009-bf73-98b52ecb29f4.png)
+<img width="869" alt="스크린샷 2022-08-18 오후 2 32 37" src="https://user-images.githubusercontent.com/99387514/185301691-43d8d591-3e61-4a5f-bb02-96506e20f3f4.png">
 
 ## 와이어프레임
 <details>
