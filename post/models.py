@@ -3,7 +3,6 @@ from user.models import UserModel
 from movie.models import Movie
 
 
-# Create your models here.
 class PostModel(models.Model):
     class Meta:
         db_table = "post"
