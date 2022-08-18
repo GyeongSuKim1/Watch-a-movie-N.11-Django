@@ -1,16 +1,11 @@
-# 피그마
+# 🎬 프로젝트 주제
 
-- figma 링크 : [Django 프로젝트 - FigJam (figma.com)](https://www.figma.com/file/1MNv5IX3SogCRUtb0odNde/Django-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1)
-- 초안  
+### 개인별 맞춤 영화 추천 서비스
+: 사용자가 작성한 영화 리뷰를 토대로 영화를 추천
 
+<br>
 
-    ![Django](https://user-images.githubusercontent.com/89643366/173344603-e0649fe5-6ae1-4eb1-a438-850811b5daba.png)
-
-    
-    ![Django2](https://user-images.githubusercontent.com/89643366/173346061-66b46868-7374-4e63-864d-dea2d90e3e45.png)
-
-
-# 기능명세서
+## 기능명세서
 
 - 상단바
     - 상단바의 [로고] [검색] [마이페이지] [로그인 or 로그아웃] click으로 해당 페이지로 이동합니다.
@@ -65,16 +60,26 @@
     - 영화 리뷰 리스트의 구성 요소는 `영화 제목, 평점, 작성시간, 수정, 삭제 버튼` 입니다.
     - 페이지별 리스트을 보여주는 것이 아닌 스크롤 방식으로 작성된 리뷰 리스트를 볼 수 있습니다.
 
-# API 명세서
+## API 명세서
 ![API](https://user-images.githubusercontent.com/89643366/173366787-77b7a41c-9dea-4811-a23e-5989fd47d8a8.png)
 
-# DATABASE
-### 💚 ERDCloud 링크 : https://www.erdcloud.com/d/mb5GM8DCtF2wpJfp4
+## DATABASE
 ![Untitled](https://user-images.githubusercontent.com/89643366/173367811-6305aea3-781b-4009-bf73-98b52ecb29f4.png)
 
+## 와이어프레임
+<details>
+<summary>
+    click!
+</summary>
+
+![image](https://user-images.githubusercontent.com/89643366/173344603-e0649fe5-6ae1-4eb1-a438-850811b5daba.png)
+
+![image](https://user-images.githubusercontent.com/89643366/173346061-66b46868-7374-4e63-864d-dea2d90e3e45.png)
+
+</details> 
 
 
-# 컨벤션
+## 컨벤션
 
 ### 💚 Git
 
